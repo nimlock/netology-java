@@ -7,8 +7,13 @@ class Main {
     public static Scanner myScanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String[] products = {"Молоко", "Хлеб", "Гречневая крупа"};
-        int[] prices = {80, 45, 63};
+        String[] products = {"Молоко",
+                "Хлеб",
+                "Гречневая крупа",
+                "Геркулес",
+                "Картошка фасованная",
+                "Макароны"};
+        int[] prices = {80, 45, 63, 38, 187, 91};
         int[] cart = new int[products.length];
 
         welcomeMsg(products, prices);
@@ -30,12 +35,14 @@ class Main {
             String rawInput = myScanner.nextLine();
             if (rawInput.equals("end")) {
                 break;
-            };
+            } else if (!rawInput.contains(" ")) {
+                System.out.println("Ошибка! Введена строка без пробела, повторите ввод.");
+                continue;
+            }
             String[] input = rawInput.split(" ");
             int position = Integer.parseInt(input[0]) - 1;
             int howMuch = Integer.parseInt(input[1]);
-            cart[position] = (cart[position] == 0) ? howMuch
-                    : cart[position] + howMuch;
+            cart[position] = cart[position] + howMuch;
         }
     }
 
